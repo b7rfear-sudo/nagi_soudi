@@ -133,6 +133,7 @@ const MENU={
   ["وجبة فلتو","Fileto Meal","Repas filet",280],["وجبة حمام","Pigeon Meal","Repas pigeon",225],["وجبة بانيه مقلي","Fried Breaded Chicken Meal","Repas poulet pané frit",155],
   ["وجبة صدور جريل","Grilled Chicken Breast Meal","Repas blanc de poulet grillé",160],["وجبة شيش طاووق","Shish Tawook Meal","Repas shish tawouk",155],
   ["وجبة سجق مشوي","Grilled Sausage Meal","Repas saucisse grillée",200],["وجبة طرب","Tarb Meal","Repas Tarb",200,"","tarb"],["وجبة كفتة","Kofta Meal","Repas kofta",160],
+  ["وجبة كباب","Kebab Meal","Repas kebab",340,"ربع كباب + أرز + بطاطس + سمبوسة + عيش + سلطة"],
   ["وجبة فراخ ورك","Chicken Thigh Meal","Repas cuisse de poulet",130],["وجبة فراخ صدر","Chicken Breast Meal","Repas poitrine de poulet",145]]},
  {id:"diet",serves:{ar:"سوتيه + سلطة خضراء فريش + أرز بسمتي + عيش",en:"Sautéed vegetables, fresh green salad, basmati rice and bread",fr:"Légumes sautés, salade verte fraîche, riz basmati et pain"},ic:"🥦",img:"hero",ar:"ركن الوجبات الدايت",en:"Diet Meals",fr:"Repas diététiques",note:{ar:"تقدم مع سوتيه + سلطة خضراء فريش + أرز بسمتي + عيش",en:"Served with sautéed vegetables, fresh green salad, basmati rice and bread",fr:"Servi avec légumes sautés, salade verte fraîche, riz basmati et pain"},items:[
   ["وجبة ربع فراخ صدر","Quarter Chicken Breast Meal","Repas quart de poulet (blanc)",145],["وجبة شرائح بانيه مشوي","Grilled Chicken Fillet Slices Meal","Repas tranches de filet de poulet grillé",160],
@@ -224,8 +225,8 @@ function openItem(sid,i){
 addEventListener("keydown",e=>{if(e.key=="Escape")closeItem()});
 const PIECE=new Set(["grills|موزة ضاني","grills|حمام محشي"]);
 const WTS=[["1/8","⅛",1/8],["1/4","¼",.25],["1/3","⅓",1/3],["1/2","½",.5],["3/4","¾",.75],["1","1",1]];
-const VKEY=new Set(["grills|فرخة شيش","grills|فرخة تكا","grills|فرخة وراك"]),VARS=[["qb",115],["qw",100],["h",190],["f",380]],VMIN=100,VSETS={"grills|فرخة وراك":[["h",150],["f",300]]},VL=(s,p)=>VSETS[s.id+"|"+p[0]]||VARS;
-const VLAB={qb:{ar:"ربع صدر",en:"Quarter breast",fr:"Quart de blanc"},qw:{ar:"ربع ورك",en:"Quarter thigh",fr:"Quart de cuisse"},h:{ar:"نص فرخة",en:"Half chicken",fr:"Demi-poulet"},f:{ar:"فرخة",en:"Whole chicken",fr:"Poulet entier"}};
+const VKEY=new Set(["grills|فرخة شيش","grills|فرخة تكا","grills|فرخة وراك","dishes|ملوخية","dishes|محشي مشكل","dishes|ورق عنب"]),VARS=[["qb",115],["qw",100],["h",190],["f",380]],VMIN=100,VSETS={"grills|فرخة وراك":[["h",150],["f",300]],"dishes|ملوخية":[["s",30],["l",60]],"dishes|محشي مشكل":[["s",45],["l",80]],"dishes|ورق عنب":[["s",50],["l",90]]},VL=(s,p)=>VSETS[s.id+"|"+p[0]]||VARS;
+const VLAB={s:{ar:"صغير",en:"Small",fr:"Petit"},l:{ar:"كبير",en:"Large",fr:"Grand"},qb:{ar:"ربع صدر",en:"Quarter breast",fr:"Quart de blanc"},qw:{ar:"ربع ورك",en:"Quarter thigh",fr:"Quart de cuisse"},h:{ar:"نص فرخة",en:"Half chicken",fr:"Demi-poulet"},f:{ar:"فرخة",en:"Whole chicken",fr:"Poulet entier"}};
 const ISV=(s,p)=>VKEY.has(s.id+"|"+p[0]),r5=x=>Math.round(x/5)*5;
 const ISKG=(s,p)=>s.unit=="kg"&&!PIECE.has(s.id+"|"+p[0])&&!ISV(s,p),ISPC=(s,p)=>s.unit=="kg"&&PIECE.has(s.id+"|"+p[0]);
 const rng=v=>{const m=String(v).match(/\d+/g).map(Number);return [m[0],m[m.length-1]]};
@@ -233,9 +234,9 @@ const money=(a,b)=>a==b?a:a+" - "+b;
 function lineOf(c){const [sid,i,w]=c.k.split("|"),s=MENU.sections.find(x=>x.id==sid),p=s.items[+i];
  if(ISV(s,p)){const v=VL(s,p).find(a=>a[0]==w);if(!v)throw 0;return {s,p,lo:v[1]*c.n,hi:v[1]*c.n,lab:VLAB[w][L],labA:VLAB[w].ar}}
  const W=w!="x"?WTS.find(a=>a[0]==w):null,f=W?W[2]:1,[lo,hi]=rng(p[3]);return {s,p,lo:r5(lo*f)*c.n,hi:r5(hi*f)*c.n,lab:W?W[1]+" "+T("kgw"):"",labA:W?W[1]+" كيلو":""}}
-let CART=[];try{CART=JSON.parse(localStorage.getItem("ns-cart")||"[]")}catch(e){}
+let CART=[];try{CART=JSON.parse(localStorage.getItem("ns-cart2")||"[]")}catch(e){}
 CART=CART.filter(c=>{try{lineOf(c);return c.n>0}catch(e){return false}});
-function save(){try{localStorage.setItem("ns-cart",JSON.stringify(CART))}catch(e){}}
+function save(){try{localStorage.setItem("ns-cart2",JSON.stringify(CART))}catch(e){}}
 const tot=()=>CART.reduce((a,c)=>{const l=lineOf(c);return [a[0]+l.lo,a[1]+l.hi]},[0,0]);
 function toast(){let b=document.getElementById("ts");if(b)b.remove();b=document.createElement("div");b.id="ts";b.className="ts";b.textContent=T("added");document.body.appendChild(b);setTimeout(()=>b.remove(),1300)}
 function bar(){let b=document.getElementById("cb");const n=CART.reduce((a,c)=>a+c.n,0);if(!n){if(b)b.remove();return}const [lo,hi]=tot();if(!b){b=document.createElement("button");b.id="cb";b.className="cb";b.onclick=cartView;document.body.appendChild(b)}b.innerHTML=`<span class="bd">${n}</span><span>${T("cart")}</span><b>${money(lo,hi)} ${T("egp")}</b>`}
