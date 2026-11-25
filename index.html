@@ -104,6 +104,7 @@ h2::after{content:"";display:block;width:38px;height:4px;border-radius:2px;backg
 .br{display:flex;align-items:center;gap:10px}
 .hw{flex:none;width:36px;height:36px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px #0004}
 .hw svg{width:22px;height:22px}
+.it p.sv{color:var(--g);font-size:12px;font-weight:600;margin-top:3px}
 </style>
 </head><body>
 <div class="top"><div class="br"><b>NAGY SOUDI</b><a class="hw" href="https://wa.me/201201000880?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D9%86%D8%A7%D8%AC%D9%8A%20%D8%B3%D8%B9%D9%88%D8%AF%D9%8A%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%2F%20%D8%A7%D9%84%D8%B7%D9%84%D8%A8" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path fill="#fff" d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/><path fill="#fff" d="M16.5 14.4c-.3-.1-1.6-.8-1.9-.9-.3-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1-1.5-.7-2.5-1.3-3.4-2.9-.3-.4.3-.4.8-1.3.1-.2 0-.3 0-.5l-.9-2c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.8.8-1 1.7-.7 2.6.7 1.9 2 3.5 3.8 4.6 1.8 1 3.3 1.3 4.5.9.9-.3 1.5-1.2 1.5-1.8 0-.3-.1-.5-.3-.5z"/></svg></a></div><div class="lang" id="lang"></div></div>
@@ -118,7 +119,7 @@ const R="تحتاج مراجعة";
 const MENU={
  contact:{wa:"01201000880",tel:["01289938171","01117036900","0225928261","01001709666"],addr:{ar:"٢٤١ ميدان الجيش – أمام مترو الجيش",en:"241 Army Square – in front of El Geish Metro",fr:"241 Place de l'Armée – face au métro El Geish"},ac:{ar:"يوجد صالة مكيفة",en:"Air-conditioned hall available",fr:"Salle climatisée disponible"}},
  sections:[
- {id:"grills",ic:"🍢",img:"hero",ar:"ركن المشويات",en:"Grills",fr:"Grillades",unit:"kg",note:{ar:"الأسعار للكيلو · موزة ضاني وحمام محشي بالقطعة · فرخة شيش وتكا بالأحجام (ربع صدر / ربع ورك / نص فرخة / فرخة)",en:"Prices per kilogram · lamb shank and stuffed pigeon per piece · chicken shish and tikka by size (quarter breast / quarter thigh / half / whole)",fr:"Prix au kilo · jarret d'agneau et pigeon farci à la pièce · poulet shish et tikka par taille (quart blanc / quart cuisse / demi / entier)"},items:[
+ {id:"grills",ic:"🍢",img:"hero",ar:"ركن المشويات",en:"Grills",fr:"Grillades",unit:"kg",items:[
   ["فرخة شيش","Chicken Shish","Poulet shish",380],["فرخة تكا","Chicken Tikka","Poulet tikka",380],["فرخة وراك","Chicken Thighs","Cuisses de poulet",300],
   ["طاووق مخلي","Boneless Tawook","Tawouk désossé",520],["شرائح صدور","Chicken Breast Slices","Tranches de blanc de poulet",520],
   ["كفتة كندوز","Kandouz (Veal) Kofta","Kofta Kandouz (veau)",500],["كفتة ضاني","Lamb Kofta","Kofta d'agneau",750],["كفتة وطرب","Kofta & Tarb","Kofta et Tarb",550,"","tarb"],
@@ -128,23 +129,23 @@ const MENU={
   ["موزة ضاني","Lamb Shank","Jarret d'agneau",450],
   ["كبدة وكلاوي وقلب","Liver, Kidneys & Heart","Foie, rognons et cœur",750],
   ["ممبار مشوي","Grilled Mombar (stuffed sausage)","Mombar grillé (boyau farci)",450],["مخاصي مشوي","Grilled Mokhasi","Mokhasi grillé",700]]},
- {id:"individual",size:{ar:"ربع كيلو",en:"¼ kg",fr:"¼ kg"},serves:{ar:"أرز + سمبوسة + بطاطس + عيش + سلطات",en:"Rice, sambousa, potatoes, bread and salads",fr:"Riz, sambousa, pommes de terre, pain et salades"},ic:"🍛",img:"hero",ar:"ركن الوجبات الفردية",en:"Individual Meals",fr:"Repas individuels",
-  note:{ar:"الأسعار للوجبة الواحدة، وكل وجبة ربع كيلو · تقدم مع أرز + سمبوسة + بطاطس + عيش + سلطات",en:"Prices are per meal; each meal is ¼ kg · Served with rice, sambousa, potatoes, bread and salads",fr:"Prix par repas ; chaque repas = ¼ kg · Servi avec riz, sambousa, pommes de terre, pain et salades"},items:[
+ {id:"individual",size:{ar:"¼ كيلو",en:"¼ kg",fr:"¼ kg"},serves:{ar:"أرز + سمبوسة + بطاطس + عيش + سلطات",en:"Rice, sambousa, potatoes, bread and salads",fr:"Riz, sambousa, pommes de terre, pain et salades"},ic:"🍛",img:"hero",ar:"ركن الوجبات الفردية",en:"Individual Meals",fr:"Repas individuels",
+  items:[
   ["وجبة فلتو","Fileto Meal","Repas filet",280],["وجبة حمام","Pigeon Meal","Repas pigeon",225],["وجبة بانيه مقلي","Fried Breaded Chicken Meal","Repas poulet pané frit",155],
   ["وجبة صدور جريل","Grilled Chicken Breast Meal","Repas blanc de poulet grillé",160],["وجبة شيش طاووق","Shish Tawook Meal","Repas shish tawouk",155],
   ["وجبة سجق مشوي","Grilled Sausage Meal","Repas saucisse grillée",200],["وجبة طرب","Tarb Meal","Repas Tarb",200,"","tarb"],["وجبة كفتة","Kofta Meal","Repas kofta",160],
-  ["وجبة كباب","Kebab Meal","Repas kebab",340,"ربع كباب + أرز + بطاطس + سمبوسة + عيش + سلطة"],
+  ["وجبة كباب","Kebab Meal","Repas kebab",340],
   ["وجبة فراخ ورك","Chicken Thigh Meal","Repas cuisse de poulet",130],["وجبة فراخ صدر","Chicken Breast Meal","Repas poitrine de poulet",145]]},
- {id:"diet",serves:{ar:"سوتيه + سلطة خضراء فريش + أرز بسمتي + عيش",en:"Sautéed vegetables, fresh green salad, basmati rice and bread",fr:"Légumes sautés, salade verte fraîche, riz basmati et pain"},ic:"🥦",img:"hero",ar:"ركن الوجبات الدايت",en:"Diet Meals",fr:"Repas diététiques",note:{ar:"تقدم مع سوتيه + سلطة خضراء فريش + أرز بسمتي + عيش",en:"Served with sautéed vegetables, fresh green salad, basmati rice and bread",fr:"Servi avec légumes sautés, salade verte fraîche, riz basmati et pain"},items:[
+ {id:"diet",serves:{ar:"سوتيه + سلطة خضراء فريش + أرز بسمتي + عيش",en:"Sautéed vegetables, fresh green salad, basmati rice and bread",fr:"Légumes sautés, salade verte fraîche, riz basmati et pain"},ic:"🥦",img:"hero",ar:"ركن الوجبات الدايت",en:"Diet Meals",fr:"Repas diététiques",items:[
   ["وجبة ربع فراخ صدر","Quarter Chicken Breast Meal","Repas quart de poulet (blanc)",145],["وجبة شرائح بانيه مشوي","Grilled Chicken Fillet Slices Meal","Repas tranches de filet de poulet grillé",160],
   ["وجبة شيش طاووق","Shish Tawook Meal","Repas shish tawouk",140],["وجبة شرائح استيك","Steak Slices Meal","Repas tranches de steak",280]]},
  {id:"mixes",serves:{ar:"أرز أو بطاطس + عيش + سلطات",en:"Rice or potatoes, bread and salads",fr:"Riz ou pommes de terre, pain et salades"},ic:"🍖",img:"mix",ar:"ركن الميكسات",en:"Mixes",fr:"Mixes (assortiments)",
-  note:{ar:"أرز أو بطاطس + عيش + سلطات",en:"Rice or potatoes, bread and salads",fr:"Riz ou pommes de terre, pain et salades"},items:[
+  items:[
   ["وجبة مكس 1","Mix Meal 1","Mix repas 1",380,"٤/١ فرخة + ٣ ق كفتة + ٢ ق طرب + ٢ إستيك"],["وجبة مكس 2","Mix Meal 2","Mix repas 2",270,"٤/١ فرخة + ٣ ق كفتة + ٢ ق طرب"],
   ["وجبة مكس 3","Mix Meal 3","Mix repas 3",295,"٣ ق كفتة + ٢ ق طرب + ٢ إستيك"],["وجبة مكس 4","Mix Meal 4","Mix repas 4",160,"٤/١ فرخة + ٢ ق كفتة"],
   ["وجبة مكس 5","Mix Meal 5","Mix repas 5",205,"٤/١ فرخة + ٣ ق كفتة + سمبوسة + ممبار"],
-  ["وجبة مكس 6","Mix Meal 6","Mix repas 6",225,"٢ قطعة كفتة + ٢ قطعة شرائح صدور + ٢ قطعة شيش طاووق"]]},
- {id:"layya",ic:"🔥",img:"hero",ar:"ركن المحمر باللية",en:"Lamb-Tail-Fat Roasted (Mohammar bel Layya)",fr:"Mohammar à la graisse de queue d'agneau",unit:"kg",note:{ar:"الأسعار للكيلو",en:"Prices are per kilogram",fr:"Prix au kilogramme"},items:[
+  ["وجبة مكس 6","Mix Meal 6","Mix repas 6",220,"٢ قطعة كفتة + ٢ قطعة شرائح صدور + ٢ قطعة شيش طاووق"]]},
+ {id:"layya",ic:"🔥",img:"hero",ar:"ركن المحمر باللية",en:"Lamb-Tail-Fat Roasted (Mohammar bel Layya)",fr:"Mohammar à la graisse de queue d'agneau",unit:"kg",items:[
   ["كيلو لحم محمر","Mohammar Lamb","Agneau mohammar",1000],["كيلو سجق محمر","Mohammar Sausage","Saucisse mohammar",600],
   ["كيلو كبدة محمر","Mohammar Liver","Foie mohammar",550],["كيلو كفتة محمر","Mohammar Kofta","Kofta mohammar",550],
   ["كيلو كبدة وكفتة وسجق","Liver, Kofta & Sausage","Foie, kofta et saucisse",550],["كيلو مخاصي وكلاوي","Mokhasi & Kidneys Mohammar","Mokhasi et rognons mohammar",750]]},
@@ -153,14 +154,14 @@ const MENU={
   ["طاجن بامية","Okra Casserole","Tajine de gombo",230],["طاجن عكاوي","Oxtail Casserole (Okaawi)","Tajine de queue de bœuf (okaawi)",300,"","okaawi"]]},
  {id:"sandwiches",ic:"🥙",img:"hero",ar:"ركن السندوتشات",en:"Sandwiches",fr:"Sandwichs",items:[
   ["كفتة مشوية","Grilled Kofta","Kofta grillée",65],["طرب مشوي","Grilled Tarb","Tarb grillé",95,"","tarb"],["سجق مشوي","Grilled Sausage","Saucisse grillée",90],
-  ["صدور بانيه","Breaded Chicken Breast","Blanc de poulet pané",70],["شيش طاووق","Shish Tawook","Shish tawouk",70],["كبدة مشوية","Grilled Liver","Foie grillé",90],["لحم مشوي","Grilled Meat","Viande grillée",185],
+  ["صدور بانيه","Breaded Chicken Breast","Blanc de poulet pané",70],["شيش طاووق","Shish Tawook","Shish tawouk",70],["كبدة مشوية","Grilled Liver","Foie grillé",90],["لحم مشوي","Grilled Meat","Viande grillée",125],
   ["حواوشي لحمة سادة","Hawawshi – Plain Meat","Hawawshi viande nature",70],["حواوشي لحمة جبنة","Hawawshi – Meat & Cheese","Hawawshi viande et fromage",85],
   ["حواوشي سجق سادة","Hawawshi – Plain Sausage","Hawawshi saucisse nature",90],["حواوشي سجق جبنة","Hawawshi – Sausage & Cheese","Hawawshi saucisse et fromage",100]]},
  {id:"dishes",ic:"🍚",img:"hero",ar:"ركن الأطباق",en:"Main Dishes",fr:"Plats principaux",items:[
   ["شوربة لسان","Tongue Soup","Soupe de langue",30],["ملوخية","Molokhia","Mouloukhia","30 - 60"],["أرز بسمتي","Basmati Rice","Riz basmati",40],["أرز حمام","Pigeon Rice","Riz au pigeon",40],
   ["أرز شعرية","Vermicelli Rice","Riz aux vermicelles",40],["أرز أبيض","White Rice","Riz blanc",40],["أرز بالكبدة","Rice with Liver","Riz au foie",80],["مكرونة بشاميل","Béchamel Pasta","Pâtes béchamel",70],
   ["خضار سادة","Plain Vegetables","Légumes nature",35],["خضار سوتيه","Sautéed Vegetables","Légumes sautés",30],["محشي مشكل","Assorted Mahshi (Stuffed Veg)","Mahshi assorti","45 - 80"],
-  ["ورق عنب","Stuffed Vine Leaves","Feuilles de vigne farcies","50 - 90"],["سمبوسة","Sambousa","Sambousa",15],["بطاطس","Potatoes","Pommes de terre",40]]},
+  ["ورق عنب","Stuffed Vine Leaves","Feuilles de vigne farcies","50 - 90"],["سمبوسة","Sambousa","Sambousa",10],["بطاطس","Potatoes","Pommes de terre",40]]},
  {id:"salads",ic:"🥗",img:"salad",ar:"ركن السلطات",en:"Salads",fr:"Salades",items:[
   ["سلطة خضراء","Green Salad","Salade verte",15],["سلطة طحينة","Tahini Salad","Salade de tahini",20],["سلطة بابا غنوج","Baba Ghanoush","Baba ghanoush",15],
   ["سلطة كول سلو","Coleslaw","Coleslaw",30],["سلطة جبنة","Cheese Salad","Salade de fromage",20],["سلطة زبادي","Yogurt Salad","Salade de yaourt",30],["باذنجان مخلل","Pickled Eggplant","Aubergine marinée",15]]},
@@ -219,7 +220,7 @@ function openItem(sid,i){
  const name=L=="ar"?p[0]:p[L=="en"?1:2],g=p[5]?GL[p[5]][L]:"",ph=PHOTOS[s.id+"|"+p[0]];
  const row=(k,v,rtl)=>v?`<div class="dr"><b>${T(k)}</b><span${rtl?' dir="rtl"':''}>${v}</span></div>`:"";
  const m=document.createElement("div");m.id="im";m.className="im";
- m.innerHTML=`<div class="sheet"><button class="x" onclick="closeItem()" aria-label="${T("close")}">×</button>${ph?`<img class="big" src="${ph}" alt="${name}" onclick="zoom(this.src)">`:`<div class="big ic">${PH}</div>`}<div class="sb"><h3>${name}</h3>${L!="ar"?`<div class="ar" dir="rtl">${p[0]}</div>`:""}<div class="pp">${p[3]} <small>${T("egp")}${ISV(s,p)?"":s.unit=="kg"?" · "+(PIECE.has(s.id+"|"+p[0])?T("pcs"):KG[L]):""}</small></div>${g?`<p class="gl">${g}</p>`:""}${row("ing",p[4],L!="ar")}${row("size",s.size&&s.size[L])}${row("serves",s.serves&&s.serves[L])}<div id="buy">${buyHTML(sid,i)}</div></div></div>`;
+ m.innerHTML=`<div class="sheet"><button class="x" onclick="closeItem()" aria-label="${T("close")}">×</button>${ph?`<img class="big" src="${ph}" alt="${name}" onclick="zoom(this.src)">`:`<div class="big ic">${PH}</div>`}<div class="sb"><h3>${name}</h3>${L!="ar"?`<div class="ar" dir="rtl">${p[0]}</div>`:""}<div class="pp">${p[3]} <small>${T("egp")}${ISV(s,p)?"":s.unit=="kg"?" · "+(PIECE.has(s.id+"|"+p[0])?T("pcs"):KG[L]):""}</small></div>${g?`<p class="gl">${g}</p>`:""}${row("ing",p[4],L!="ar")}${row("size",s.size&&s.size[L])}${row("serves",SERVE(s,p)?SERVE(s,p)[L]:s.serves&&s.serves[L])}<div id="buy">${buyHTML(sid,i)}</div></div></div>`;
  m.addEventListener("click",e=>{if(e.target===m)closeItem()});
  document.body.appendChild(m);document.body.style.overflow="hidden"}
 addEventListener("keydown",e=>{if(e.key=="Escape")closeItem()});
@@ -269,9 +270,12 @@ function ticket(){closeItem();const [lo,hi]=tot(),d=new Date();
  z.innerHTML=`<div class="tkb"><div class="tkh">${L=="ar"?"توجه إلى الكاشير وأظهر له هذه الشاشة":T("toCashier")}</div><div class="tkl" dir="rtl">${rows}</div><div class="tkt" dir="rtl"><span>الإجمالي</span><b>${money(lo,hi)} ج.م</b></div><div class="tkd" dir="rtl">${d.toLocaleString("ar-EG",{dateStyle:"short",timeStyle:"short"})}</div><button class="oa" onclick="closeTicket();cartView()">${T("edit")}</button><button class="lk" onclick="closeTicket();clearCart()">${T("newOrder")}</button></div>`;
  document.body.appendChild(z);document.body.style.overflow="hidden"}
 function closeTicket(){const z=document.getElementById("tk");if(z)z.remove();document.body.style.overflow=""}
+const SV_RICE={ar:"أرز أو بطاطس + عيش + سلطات",en:"Rice or potatoes + bread + salads",fr:"Riz ou pommes de terre + pain + salades"},SV_MEAT={ar:"عيش + سلطات",en:"Bread + salads",fr:"Pain + salades"},CHICKEN=new Set(["فرخة شيش","فرخة تكا","فرخة وراك","طاووق مخلي","شرائح صدور","موزة ضاني"]);
+const IND=p=>({ar:"¼ كيلو "+p[0].replace(/^وجبة /,"")+" + أرز + بطاطس + سمبوسة + عيش + سلطة",en:"¼ kg "+p[1].replace(/ Meal$/,"")+" + rice + potatoes + sambousa + bread + salad",fr:"¼ kg "+p[2].replace(/^Repas /,"")+" + riz + pommes de terre + sambousa + pain + salade"});
+const SERVE=(s,p)=>s.id=="grills"?(CHICKEN.has(p[0])?SV_RICE:SV_MEAT):s.id=="mixes"?SV_RICE:s.id=="diet"?s.serves:s.id=="individual"?IND(p):null;
 function itemRow(s,p,i,dl){
   const name=L=="ar"?p[0]:p[L=="en"?1:2],d=p[5]?GL[p[5]][L]:(p[4]&&L=="ar"?p[4]:"");
-  return `<div class="it" onclick="openItem('${s.id}',${i})" style="animation-delay:${dl}ms">${PHOTOS[s.id+"|"+p[0]]?`<div class="thumb ph"><img src="${PHOTOS[s.id+"|"+p[0]]}" alt="${name}" loading="lazy" onclick="event.stopPropagation();zoom(this.src)"></div>`:`<div class="thumb">${PH}</div>`}<div style="flex:1;min-width:0"><h3>${name}</h3>${L!="ar"?`<p dir="rtl" style="text-align:start">${p[0]}</p>`:""}${d?`<p>${d}</p>`:""}</div><div class="pr">${p[3]}<small>${T("egp")}</small>${ISV(s,p)?"":s.unit=="kg"?"<small>"+(PIECE.has(s.id+"|"+p[0])?T("pcs"):KG[L])+"</small>":""}<button class="ob" onclick="event.stopPropagation();rowAdd('${s.id}',${i})">${T("add")}</button></div></div>`}
+  return `<div class="it" onclick="openItem('${s.id}',${i})" style="animation-delay:${dl}ms">${PHOTOS[s.id+"|"+p[0]]?`<div class="thumb ph"><img src="${PHOTOS[s.id+"|"+p[0]]}" alt="${name}" loading="lazy" onclick="event.stopPropagation();zoom(this.src)"></div>`:`<div class="thumb">${PH}</div>`}<div style="flex:1;min-width:0"><h3>${name}</h3>${L!="ar"?`<p dir="rtl" style="text-align:start">${p[0]}</p>`:""}${d?`<p>${d}</p>`:""}${SERVE(s,p)?`<p class="sv">${s.id=="individual"?"":T("serves")+": "}${SERVE(s,p)[L]}</p>`:""}</div><div class="pr">${p[3]}<small>${T("egp")}</small>${ISV(s,p)?"":s.unit=="kg"?"<small>"+(PIECE.has(s.id+"|"+p[0])?T("pcs"):KG[L])+"</small>":""}<button class="ob" onclick="event.stopPropagation();rowAdd('${s.id}',${i})">${T("add")}</button></div></div>`}
 function section(s){
  const chips=MENU.sections.map(x=>`<button class="${x.id==s.id?"on":""}" onclick="go('${x.id}')">${x[L]}</button>`).join("");
  const n=s.note?`<div class="note">${s.note[L]}</div>`:"";
