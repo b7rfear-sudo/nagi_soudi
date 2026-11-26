@@ -129,7 +129,7 @@ const MENU={
   ["موزة ضاني","Lamb Shank","Jarret d'agneau",450],
   ["كبدة وكلاوي وقلب","Liver, Kidneys & Heart","Foie, rognons et cœur",750],
   ["ممبار مشوي","Grilled Mombar (stuffed sausage)","Mombar grillé (boyau farci)",450],["مخاصي مشوي","Grilled Mokhasi","Mokhasi grillé",700]]},
- {id:"individual",size:{ar:"¼ كيلو",en:"¼ kg",fr:"¼ kg"},serves:{ar:"أرز + سمبوسة + بطاطس + عيش + سلطات",en:"Rice, sambousa, potatoes, bread and salads",fr:"Riz, sambousa, pommes de terre, pain et salades"},ic:"🍛",img:"hero",ar:"ركن الوجبات الفردية",en:"Individual Meals",fr:"Repas individuels",
+ {id:"individual",serves:{ar:"أرز + سمبوسة + بطاطس + عيش + سلطات",en:"Rice, sambousa, potatoes, bread and salads",fr:"Riz, sambousa, pommes de terre, pain et salades"},ic:"🍛",img:"hero",ar:"ركن الوجبات الفردية",en:"Individual Meals",fr:"Repas individuels",
   items:[
   ["وجبة فلتو","Fileto Meal","Repas filet",280],["وجبة حمام","Pigeon Meal","Repas pigeon",225],["وجبة بانيه مقلي","Fried Breaded Chicken Meal","Repas poulet pané frit",155],
   ["وجبة صدور جريل","Grilled Chicken Breast Meal","Repas blanc de poulet grillé",160],["وجبة شيش طاووق","Shish Tawook Meal","Repas shish tawouk",155],
@@ -271,7 +271,7 @@ function ticket(){closeItem();const [lo,hi]=tot(),d=new Date();
  document.body.appendChild(z);document.body.style.overflow="hidden"}
 function closeTicket(){const z=document.getElementById("tk");if(z)z.remove();document.body.style.overflow=""}
 const SV_RICE={ar:"أرز أو بطاطس + عيش + سلطات",en:"Rice or potatoes + bread + salads",fr:"Riz ou pommes de terre + pain + salades"},SV_MEAT={ar:"عيش + سلطات",en:"Bread + salads",fr:"Pain + salades"},CHICKEN=new Set(["فرخة شيش","فرخة تكا","فرخة وراك","طاووق مخلي","شرائح صدور","موزة ضاني"]);
-const IND=p=>({ar:"¼ كيلو "+p[0].replace(/^وجبة /,"")+" + أرز + بطاطس + سمبوسة + عيش + سلطة",en:"¼ kg "+p[1].replace(/ Meal$/,"")+" + rice + potatoes + sambousa + bread + salad",fr:"¼ kg "+p[2].replace(/^Repas /,"")+" + riz + pommes de terre + sambousa + pain + salade"});
+const IND=p=>{const dv=p[0]=="وجبة حمام",n=p[0].replace(/^وجبة /,""),e=p[1].replace(/ Meal$/,""),f=p[2].replace(/^Repas /,"");return {ar:(dv?"فرد "+n:"¼ "+n)+" + أرز + بطاطس + سمبوسة + عيش + سلطة",en:(dv?"1 ":"¼ ")+e+" + rice + potatoes + sambousa + bread + salad",fr:(dv?"1 ":"¼ ")+f+" + riz + pommes de terre + sambousa + pain + salade"}};
 const SERVE=(s,p)=>s.id=="grills"?(CHICKEN.has(p[0])?SV_RICE:SV_MEAT):s.id=="mixes"?SV_RICE:s.id=="diet"?s.serves:s.id=="individual"?IND(p):null;
 function itemRow(s,p,i,dl){
   const name=L=="ar"?p[0]:p[L=="en"?1:2],d=p[5]?GL[p[5]][L]:(p[4]&&L=="ar"?p[4]:"");
